@@ -1,0 +1,33 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+
+# Pokemon only functionality
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "if v.yes_pool_flag and not G.GAME.pool_flags[v.yes_pool_flag] then add = nil end"
+position = "after"
+payload = '''
+if v.set == 'Joker' and not v.tier then add = nil end
+if v.set == 'Joker' and v.tier and G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante and v.tier > G.GAME.round_resets.ante then add = nil end
+'''
+match_indent = true
+
+
+# function create_card() (Doorhanger)
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = 'local _pool, _pool_key = get_current_pool(_type, _rarity, legendary, key_append)'
+position = 'before'
+match_indent = true
+payload = '''
+            if _rarity == nil
+            or ((type(_rarity) == 'number') and (_rarity < 0.9))
+            or ((type(_rarity) == 'string') and (_rarity == 'Common')) then
+                _rarity = 0.5
+        end
+'''

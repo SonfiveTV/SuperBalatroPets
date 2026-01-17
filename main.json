@@ -1,0 +1,20 @@
+{
+	"id": "SuperBalatroPets",
+	"name": "Super Balatro Pets",
+	"author": ["Sonfive"],
+	"description": "Super Auto Pets but it's Balatro",
+	"prefix": "sbp",
+	"main_file": "main.lua",
+	"priority": 20,
+	"badge_colour": "87deff",
+	"badge_text_colour": "ffffff",
+  "display_name": "SBP+",
+	"version": "1.0.0",
+	"dependencies": [
+			"Steamodded (>=1.0.0~ALPHA-1426c)",
+      		"Lovely (>=0.7)"
+	],
+  "conflicts": [],
+	"provides": [],
+	"dump_loc": false 
+}
